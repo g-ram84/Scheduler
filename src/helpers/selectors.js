@@ -8,7 +8,13 @@ export function getAppointmentsForDay(state, day) {
   }
   return dayObj.appointments.map(id => state.appointments[id]); 
 }
+
+
 export function getInterview(state, interview) {
-  const intObj = state.interviews.find(interviews => interviews.name === interview);
-  return intObj.interviewer.map(id => state.interviewer[id])
+  if (!interview) return null
+  const intObj = {};
+   intObj.student = interview.student
+   intObj.interviewer = state.interviewers[interview.interviewer]
+
+  return intObj
 }

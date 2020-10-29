@@ -6,6 +6,7 @@ import './styles.scss';
 
 
 export default function Appointment(props) {
+  console.log("Appointment props", props);
   return (
     <main>
       <Header
