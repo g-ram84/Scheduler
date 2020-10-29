@@ -12,9 +12,9 @@ export default function Appointment(props) {
        time={props.time}
       />
       <article className="appointment"></article>
-      {props.interviewer ? <Show 
+      {props.interview ? <Show 
                             student={props.interview.student}
-                            interviewer={props.interview.interviewer.name}
+                            interviewer={props.interview.interviewer}
                           /> : <Empty />}
     </main>
 
