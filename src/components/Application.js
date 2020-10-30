@@ -9,7 +9,6 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 export default function Application(props) {
   
   const setDay = day => setState(prev => ({ ...prev, day })); 
-  // const setDays = days => setState(prev => ({ ...prev, days }));
   const[state, setState] = useState({
     day: "Monday",
     days: [],
@@ -111,15 +110,60 @@ export default function Application(props) {
   }, [])
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  
+  function cancelInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview}
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.delete(`/api/appointments/${id}`, appointment)
+    .then((response) => {
+      setState({...state, appointments})
+    })
+    .catch((error) => {
+      console.log(error.errno)
+    })
+  }
+  
+  
+  
   function bookInterview(id, interview) {
-    console.log(id, interview);
+   
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.put(`/api/appointments/${id}`, appointment)
+    .then((response) => {
+      setState({...state, appointments})
+    })
+    .catch((error) => {
+      console.log(error.errno)
+    })
   }
   
   const booking = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     const dailyInterviewers = getInterviewersForDay(state, state.day);
     return (
-      <Appointment key={appointment.id}  interview={interview} interviewers={dailyInterviewers}/>
+      <Appointment
+        id={appointment.id}
+        key={appointment.id}  
+        interview={interview} 
+        interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
+      />
     );
   });
 
