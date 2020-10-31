@@ -121,13 +121,16 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    return axios.delete(`/api/appointments/${id}`, appointment)
+    return axios.delete(`/api/appointments/${id}`)
     .then((response) => {
       setState({...state, appointments})
     })
-    .catch((error) => {
-      console.log(error.errno)
-    })
+  //   .catch(`/appointments/${id}`, (request, response) => {
+  //     if (process.env.ERROR_DELETE) {
+  //       setTimeout(() => response.status(500).json({}), 1000);
+  //       return;
+  //     }
+  // });
   }
   
   
@@ -147,9 +150,12 @@ export default function Application(props) {
     .then((response) => {
       setState({...state, appointments})
     })
-    .catch((error) => {
-      console.log(error.errno)
-    })
+  //   .catch(`/appointments/${id}`, (request, response) => {
+  //     if (process.env.ERROR_SAVE) {
+  //       setTimeout(() => response.status(500).json({}), 1000);
+  //       return;
+  //     }
+  // });
   }
   
   const booking = dailyAppointments.map((appointment) => {

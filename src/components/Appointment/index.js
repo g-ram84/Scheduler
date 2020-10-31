@@ -3,6 +3,7 @@ import Header from "./Header.js"
 import Show from "./Show.js"
 import Status from "./Status.js"
 import Empty from "./Empty.js"
+import Confirm from "./Confirm.js"
 import Form from "./Form.js"
 import './styles.scss';
 import  useVisualMode  from "hooks/useVisualMode.js"
@@ -15,6 +16,8 @@ export default function Appointment(props) {
   const CREATE = "CREATE";
   const SAVING = "SAVING";
   const DELETING = "DELETING";
+  const CONFIRM = "CONFIRM"
+  const EDIT = "EDIT";
 
 
 
@@ -37,15 +40,9 @@ export default function Appointment(props) {
     transition(SHOW)
   })
 }
-function cancel(name, interviewer) {
-  const interview = {
-    student: name,
-    interviewer
-  };
-  props.cancelInterview(props.id, interview)
-  .then(() => {
-    transition(DELETING)
-  })
+function cancel() {
+  transition(DELETING)
+  props.cancelInterview(props.id)
   .then(() => {
     transition(EMPTY)
   })
@@ -60,6 +57,11 @@ function cancel(name, interviewer) {
        time={props.time}
       />
       <article className="appointment"></article>
+      {mode === CONFIRM && <Confirm 
+        message="Are you sure you would like to delete?"
+        onCancel={back}
+        onConfirm={cancel}
+      />}
       {mode === DELETING && <Status message="Deleting"/>}
       {mode === SAVING && <Status message="Saving"/>}
       {mode === EMPTY && <Empty onAdd={onAdd} />}
@@ -68,11 +70,21 @@ function cancel(name, interviewer) {
         onCancel={onBack} 
         onSave={save}
         />}
+      {mode === EDIT && (
+        <Form 
+        interviewers={props.interviewers}
+        name={props.interview.student}
+        interviewer={props.interview.interviewer.id}
+        onCancel={onBack} 
+        onSave={save}
+        />
+      )}
       {mode === SHOW && (
          <Show 
          student={props.interview.student}
          interviewer={props.interview.interviewer}
-         onDelete={cancel}
+         onDelete={() => transition(CONFIRM)}
+         onEdit={() => transition(EDIT)}
        />
       )}
     </main>
