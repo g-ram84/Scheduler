@@ -125,12 +125,6 @@ export default function Application(props) {
     .then((response) => {
       setState({...state, appointments})
     })
-  //   .catch(`/appointments/${id}`, (request, response) => {
-  //     if (process.env.ERROR_DELETE) {
-  //       setTimeout(() => response.status(500).json({}), 1000);
-  //       return;
-  //     }
-  // });
   }
   
   
@@ -150,12 +144,6 @@ export default function Application(props) {
     .then((response) => {
       setState({...state, appointments})
     })
-  //   .catch(`/appointments/${id}`, (request, response) => {
-  //     if (process.env.ERROR_SAVE) {
-  //       setTimeout(() => response.status(500).json({}), 1000);
-  //       return;
-  //     }
-  // });
   }
   
   const booking = dailyAppointments.map((appointment) => {

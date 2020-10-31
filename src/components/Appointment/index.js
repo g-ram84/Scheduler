@@ -18,6 +18,8 @@ export default function Appointment(props) {
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM"
   const EDIT = "EDIT";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE"
 
 
 
@@ -39,6 +41,9 @@ export default function Appointment(props) {
     .then(() => {
     transition(SHOW)
   })
+  .catch(() => {
+    transition(ERROR_SAVE)
+  })
 }
 function cancel() {
   transition(DELETING)
@@ -46,8 +51,8 @@ function cancel() {
   .then(() => {
     transition(EMPTY)
   })
-  .catch((error) => {
-    console.log(error.errno)
+  .catch(() => {
+    transition(ERROR_DELETE)
   })
 }
 
