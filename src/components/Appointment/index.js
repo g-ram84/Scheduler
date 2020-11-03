@@ -3,6 +3,7 @@ import Header from "./Header.js"
 import Show from "./Show.js"
 import Status from "./Status.js"
 import Empty from "./Empty.js"
+import Error from "./Error.js"
 import Confirm from "./Confirm.js"
 import Form from "./Form.js"
 import './styles.scss';
@@ -54,18 +55,23 @@ function cancel(event) {
     .then(() => transition(EMPTY))
     .catch(error => transition(ERROR_DELETE, true))
 }
-
   return (
-    <main>
+      <article 
+        className="appointment" 
+        data-testid="appointment"
+      >
       <Header
        time={props.time}
       />
-      <article className="appointment"></article>
       {mode === CONFIRM && <Confirm 
         message="Are you sure you would like to delete?"
         onCancel={back}
         onConfirm={cancel}
       />}
+      {mode === ERROR_DELETE &&
+      <Error message="Error Deleting" onClose={back}/>}
+      {mode === ERROR_SAVE &&
+      <Error message="Error Saving" onClose={back}/>}
       {mode === DELETING && <Status message="Deleting"/>}
       {mode === SAVING && <Status message="Saving"/>}
       {mode === EMPTY && <Empty onAdd={onAdd} />}
@@ -91,7 +97,7 @@ function cancel(event) {
          onEdit={() => transition(EDIT)}
        />
       )}
-    </main>
+</article>
 
     
   )
