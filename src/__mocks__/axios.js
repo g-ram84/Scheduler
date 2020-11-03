@@ -79,21 +79,22 @@ export default {
     }
   }),
   put: jest.fn(url => {
-    if (url === "/api/days") {
+    const newUrl = url.slice(0, -2)
+    if (newUrl === "/api/days") {
       return Promise.resolve({
         status: 204,
         statusText: "No Content",
         data: fixtures.days
       });
     }
-    if (url === "/api/appointments") {
+    if (newUrl === "/api/appointments") {
       return Promise.resolve({
         status: 204,
         statusText: "No Content",
         data: fixtures.appointments
       })
     }
-    if (url === "/api/interviewers") {
+    if (newUrl === "/api/interviewers") {
       return Promise.resolve({
         status: 204,
         statusText: "No Content",
