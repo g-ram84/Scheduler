@@ -101,6 +101,30 @@ export default {
         data: fixtures.interviewers
       })
     }
+  }),
+  delete: jest.fn(url => {
+    const newUrl = url.slice(0, -2)
+    if (newUrl === "/api/days") {
+      return Promise.resolve({
+        status: 200,
+        statusText: "Ok",
+        data: fixtures.days
+      });
+    }
+    if (newUrl === "/api/appointments") {
+      return Promise.resolve({
+        status: 200,
+        statusText: "Ok",
+        data: fixtures.appointments
+      })
+    }
+    if (newUrl === "/api/interviewers") {
+      return Promise.resolve({
+        status: 200,
+        statusText: "Ok",
+        data: fixtures.interviewers
+      })
+    }
   })
 };
 
