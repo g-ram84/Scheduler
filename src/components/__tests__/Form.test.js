@@ -22,14 +22,14 @@ describe("Form", () => {
       <Form interviewers={interviewers} />
     );
     
-    expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");  
+    expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
   });
 
   it("renders with initial student name", () => {
     const { getByTestId } = render(
       <Form interviewers={interviewers} name="Lydia Miller-Jones" />
     );
-    expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones")
+    expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
   });
 
 
@@ -75,12 +75,12 @@ describe("Form", () => {
         name="Lydia Miller-Jones"
         onSave={jest.fn()}
         onCancel={onCancel}
-      />  
+      />
     );
     fireEvent.click(getByText("Cancel"));
 
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
     expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
     expect(onCancel).toHaveBeenCalledTimes(1);
-  })
-})
+  });
+});

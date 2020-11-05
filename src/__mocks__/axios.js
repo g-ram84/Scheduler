@@ -68,18 +68,18 @@ export default {
         status: 200,
         statusText: "Ok",
         data: fixtures.appointments
-      })
+      });
     }
     if (url === "/api/interviewers") {
       return Promise.resolve({
         status: 200,
         statusText: "Ok",
         data: fixtures.interviewers
-      })
+      });
     }
   }),
   put: jest.fn(url => {
-    const newUrl = url.slice(0, -2)
+    const newUrl = url.slice(0, -2);
     if (newUrl === "/api/days") {
       return Promise.resolve({
         status: 204,
@@ -92,18 +92,18 @@ export default {
         status: 204,
         statusText: "No Content",
         data: fixtures.appointments
-      })
+      });
     }
     if (newUrl === "/api/interviewers") {
       return Promise.resolve({
         status: 204,
         statusText: "No Content",
         data: fixtures.interviewers
-      })
+      });
     }
   }),
   delete: jest.fn(url => {
-    const newUrl = url.slice(0, -2)
+    const newUrl = url.slice(0, -2);
     if (newUrl === "/api/days") {
       return Promise.resolve({
         status: 200,
@@ -116,14 +116,14 @@ export default {
         status: 200,
         statusText: "Ok",
         data: fixtures.appointments
-      })
+      });
     }
     if (newUrl === "/api/interviewers") {
       return Promise.resolve({
         status: 200,
         statusText: "Ok",
         data: fixtures.interviewers
-      })
+      });
     }
   })
 };

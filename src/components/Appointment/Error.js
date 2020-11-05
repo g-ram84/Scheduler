@@ -15,5 +15,5 @@ export default function Error(props) {
         onClick={props.onClose}
       />
     </main>
-  )
+  );
 }

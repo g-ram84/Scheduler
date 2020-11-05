@@ -1,6 +1,6 @@
 describe("Appointments", () => {
   beforeEach(() => {
-    cy.request("GET", "/api/debug/reset")
+    cy.request("GET", "/api/debug/reset");
     cy.visit("/");
     cy.contains("Monday");
   });
@@ -23,16 +23,16 @@ describe("Appointments", () => {
     cy.contains(".appointment__card--show", "Archie Cohen");
     cy.get("[alt=Edit]")
       .first()
-      .click({ force: true })
+      .click({ force: true });
     cy.get("input")
       .clear()
-      .type('Lydia Miller-Jones')
+      .type('Lydia Miller-Jones');
     cy.get("[alt='Tori Malcolm']")
       .click()
     cy.contains("Save")
       .click()
     cy.contains(".appointment__card--show", "Lydia Miller-Jones");
-    cy.contains(".appointment__card--show", "Tori Malcolm"); 
+    cy.contains(".appointment__card--show", "Tori Malcolm");
 
   })
 
@@ -40,14 +40,14 @@ describe("Appointments", () => {
     cy.contains(".appointment__card--show", "Archie Cohen");
     cy.get("[alt=Delete]")
       .first()
-      .click({ force: true })
+      .click({ force: true });
     cy.contains("Confirm")
-      .click()
+      .click();
     cy.contains("Deleting")
-      .should("exist")
+      .should("exist");
     cy.contains("Deleting")
-      .should("not.exist")
+      .should("not.exist");
     cy.contains(".appointment__card--show", "Archie Cohen")
-      .should("not.exist")
+      .should("not.exist");
   })
 });
