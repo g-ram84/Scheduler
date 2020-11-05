@@ -1,6 +1,9 @@
 # Interview Scheduler
 Created an interview scheduler app using React!  The functionality of this app allows for you to create, edit, or delete an appointment, select an instructor, and select a day.  It was quite a challenging project but I learned a lot about React!
 
+!["Screenshot of main view"](/docs/Main-Form.png)
+!["Screenshot of deleting function"](/docs/Deleting-Screen.png)
+!["Screenshot of adding form"](/docs/Create-Form.png)
 
 ## Setup
 
