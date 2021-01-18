@@ -7,6 +7,8 @@ Created an interview scheduler app using React!  The functionality of this app a
 
 ## Setup
 
+This project relies on accessing a separate API in order to access the database.  Please run `npm install` after accessing the following repository: (https://github.com/g-ram84/scheduler-api)
+
 Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
